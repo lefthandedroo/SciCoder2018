@@ -1,0 +1,2 @@
+class Spectrum(object):
+    pass
