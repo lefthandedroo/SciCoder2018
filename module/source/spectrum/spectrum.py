@@ -5,7 +5,7 @@ from astropy.io import fits
 class Spectrum(object):
 
       def __init__(self, file):
-          if filepath is None:
+          if file is None:
              raise SDSSFileNotSpecified("A spectrum file must "
                                         "be specified to create a spectrum.")
           self.data = fits.open(file)
@@ -68,11 +68,10 @@ class Spectrum(object):
           #################
 
           #Plotting Spectrum
-
           plt.clf()
           plt.plot(self.wavelength, self.flux, color = 'k', lw = 2)
           plt.xlabel(r'Wavelength $(\AA)$')
           plt.ylabel(r'Flux (Some units)')
-          plt.xlim([min(self.wavelength), max(self.wavelength)])
-          plt.ylim([min(self.flux), max(self.flux)])
+          plt.xlim([min(self.wavelength)-1 , max(self.wavelength)+1])
+          plt.ylim([min(self.flux) - 0.1*(min(flux)), max(self.flux)- 0.1*(max(flux))])
           plt.savefig(name_figure + '.png', dpi = 200)
