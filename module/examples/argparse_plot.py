@@ -1,5 +1,7 @@
 import argparse
 
+from spectrum import Spectrum
+
 parser = argparse.ArgumentParser(description="Plot spectra of given file",
 										usage="spectrum.py --filepath datafile.fits")
 
