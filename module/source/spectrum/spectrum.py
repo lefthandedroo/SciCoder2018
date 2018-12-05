@@ -1,4 +1,4 @@
-
+from .errors import SDSSFileNotSpecifiedException
 from astropy.io import fits
 from convolution import Convolution
 
@@ -6,7 +6,7 @@ class Spectrum(object):
 
       def __init__(self, file):
           if file is None:
-             raise SDSSFileNotSpecified("A spectrum file must "
+             raise SDSSFileNotSpecifiedException("A spectrum file must "
                                         "be specified to create a spectrum.")
           self.data = fits.open(file)
           self._ra  = None
