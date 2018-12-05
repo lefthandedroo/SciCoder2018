@@ -18,14 +18,14 @@ class Spectrum(object):
       def ra(self):
           ''' Returns the RA of this spectrum in degrees. '''
           if self._ra == None:
-             self._ra = self.data[0].header["RA"]
+             self._ra = self.data[0].header["PLUG_RA"]
           return self._ra
 
       @property
       def dec(self):
           ''' Returns the RA of this spectrum in degrees. '''
           if self._dec == None:
-             self._dec = self.data[0].header["DEC"]
+             self._dec = self.data[0].header["PLUG_DEC"]
           return self._ra
 
       @property
@@ -44,7 +44,6 @@ class Spectrum(object):
       def plot(self, name_figure):
           ''' Creates a plot of the spectrum '''
           import matplotlib.pyplot as plt
-
           # Bunch of things so the plot looks nice. Nothing to do here.
 
           plt.rcParams['axes.linewidth'] = 1.5
@@ -69,9 +68,14 @@ class Spectrum(object):
 
           #Plotting Spectrum
           plt.clf()
-          plt.plot(self.wavelength, self.flux, color = 'k', lw = 2)
+          plt.plot(self.wavelength, self.flux, color = 'b', lw = 2)
           plt.xlabel(r'Wavelength $(\AA)$')
           plt.ylabel(r'Flux (Some units)')
           plt.xlim([min(self.wavelength)-1 , max(self.wavelength)+1])
           plt.ylim([min(self.flux) - 0.1*(min(flux)), max(self.flux)- 0.1*(max(flux))])
           plt.savefig(name_figure + '.png', dpi = 200)
+
+      def color(self, filter_name1, filter_name2):
+          ### TODO: Things to compute
+
+          return color
