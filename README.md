@@ -3,6 +3,8 @@ SciCoder 2018 Sydney FITS file terror project
 
 FITS file module
 
+Create a structure like Dimitry's
+
 Read the header
 
 Make classes:
