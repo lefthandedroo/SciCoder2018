@@ -15,6 +15,9 @@ class Spectrum(object):
         self._flux = None
         self._wavelength = None
         self._error = None
+        self._refshift = None
+        self._error_refshift = None
+
     @property
     def hdu_list(self):
         """ Returns the HDU list of this file. """
@@ -46,12 +49,27 @@ class Spectrum(object):
         if getattr(self, '_flux', None) is None:
             self._flux = self.data[1].data['flux']
         return self._flux
+
     @property
     def error(self):
         if getattr(self,'_error',None) is None:
             # ivar = inverse variance of flux
             self._error = 1/self.data[1].data['ivar']
         return self._error
+
+    @property
+    def redshift(self):
+        if getattr(self,'_redshift',None) is None:
+            # ivar = inverse variance of flux
+            self._redshift = self.data[2].data['Z']
+        return self._redshift
+
+    @property
+    def error_redshift(self):
+        if getattr(self,'_error_redshift',None) is None:
+            # ivar = inverse variance of flux
+            self._error_redshift = self.data[2].data['Z_ERR']
+        return self._error_redshift
 
 
     def plot(self, name_figure):
