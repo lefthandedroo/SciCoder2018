@@ -54,7 +54,7 @@ class Convolution(object):
         w        = (self.wavemod >= wlow) & (self.wavemod <= whi)
         tmp_wave = self.wavemod[w]
         tmp_flux = self.fluxmod[w]
-        if np.amin(self.wavemod) > wlow or np.amax(self.wavemod) < whi:
+        while np.amin(self.wavemod) > wlow or np.amax(self.wavemod) < whi:
             continue
         # Interpolate the filter response to data wavelength
         interp   = interp1d(wavefilt[good], fluxfilt[good])
