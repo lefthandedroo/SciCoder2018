@@ -39,3 +39,8 @@ def test_flux_sign():
     ''' Checking for -ve flux'''
     s = Spectrum(test_spectrum_data)
     assert s.flux >= 0, "Negative flux detected"
+    
+def test_color():
+    '''Check if color returns'''
+    s = Spectrum(test_spectrum_data)
+    np.testing.assert_approx_equal(s.color, 0.4571685891215722) 
