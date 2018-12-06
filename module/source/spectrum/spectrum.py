@@ -10,10 +10,18 @@ class Spectrum(object):
             raise SDSSFileNotSpecifiedException("A spectrum file must "
                                                 "be specified to create a spectrum.")
         self.data = fits.open(file)
+        self.hdu_list = None
         self._ra = None
         self._dec = None
         self._flux = None
         self._wavelength = None
+
+    @property
+    def ra(self):
+        """ Returns the HDU list of this file. """
+        if self._hdu_list is None:
+            self._hdu_list = self.data
+        return self._hdu_list
 
     @property
     def ra(self):
