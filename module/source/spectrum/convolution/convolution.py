@@ -5,12 +5,14 @@ from   astropy.io          import fits
 from   astropy.io          import ascii
 from   scipy.interpolate   import interp2d, interp1d
 
+
 class Convolution(object):
 
     def __init__(self, wave, flux, filter_name):
         self.wave = wave
         self.flux = flux
-        self.filter_file = 'filters/' + filter_name + '_SDSS.res'
+        self.path = 'convolution/'
+        self.filter_file = self.path + 'filters/' + filter_name + '_SDSS.res'
 
     def read_filter(self, file):
         data     = ascii.read(file)
@@ -21,7 +23,7 @@ class Convolution(object):
 
     def load_zerofile(self):
         file         = 'alpha_lyr_stis_005.ascii'
-        data         = ascii.read(file, comment='\s*#')
+        data         = ascii.read(self.path + file, comment='\s*#')
         npt          = len(data['col1'])
         zerosed      = np.recarray((npt,), dtype=[('wave', float),('flux', float)])
         zerosed.wave = data['col1']
