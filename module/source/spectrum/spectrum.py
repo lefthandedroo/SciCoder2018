@@ -5,19 +5,16 @@ from .convolution.convolution import Convolution
 
 class Spectrum(object):
 
-    def __init__(self, file):
-        if file is None:
+    def __init__(self, filepath=None):
+        if filepath is None:
             raise SDSSFileNotSpecifiedException("A spectrum file must "
                                                 "be specified to create a spectrum.")
-        self.data = fits.open(file)
+        self.filepath = filepath
         self._ra = None
         self._dec = None
         self._flux = None
         self._wavelength = None
         self._error = None
-        self._refshift = None
-        self._error_refshift = None
-
     @property
     def hdu_list(self):
         """ Returns the HDU list of this file. """
@@ -27,49 +24,54 @@ class Spectrum(object):
     def ra(self):
         """ Returns the RA of this spectrum in degrees. """
         if self._ra is None:
-            self._ra = self.data[0].header["PLUG_RA"]
+            with fits.open(self.filepath) as hdu_list:
+                try:
+                    self._dec = hdu_list[0].header["PLUG_RA"]
+                except KeyError:
+                    print('You need to update the code to account for the modified keyword.')
         return self._ra
 
     @property
     def dec(self):
         """ Returns the DEC of this spectrum in degrees. """
         if self._dec is None:
-            self._dec = self.data[0].header["PLUG_DEC"]
+            with fits.open(self.filepath) as hdu_list:
+                try:
+                    self._dec = hdu_list[0].header["PLUG_DEC"]
+                except KeyError:
+                    print('You need to update the code to account for the modified keyword.')
         return self._dec
 
     @property
     def wavelength(self):
         """Wavelength binning, linear bins."""
         if getattr(self, '_wavelength', None) is None:
-            self._wavelength = 10 ** self.data[1].data['loglam']
+            with fits.open(self.filepath) as hdu_list:
+                try:
+                    self._wavelength = 10**hdu_list[1].data['loglam']
+                except KeyError:
+                    print('You need to update the code to account for the modified keyword.')
         return self._wavelength
 
     @property
     def flux(self):
         if getattr(self, '_flux', None) is None:
-            self._flux = self.data[1].data['flux']
+            with fits.open(self.filepath) as hdu_list:
+                try:
+                    self._flux = hdu_list[1].data['flux']
+                except KeyError:
+                    print('You need to update the code to account for the modified keyword.')
         return self._flux
-
     @property
     def error(self):
         if getattr(self,'_error',None) is None:
             # ivar = inverse variance of flux
-            self._error = 1/self.data[1].data['ivar']
+            with fits.open(self.filepath) as hdu_list:
+                try:
+                    self._error = 1./hdu_list[1].data['ivar']
+                except KeyError:
+                    print('You need to update the code to account for the modified keyword.')
         return self._error
-
-    @property
-    def redshift(self):
-        if getattr(self,'_redshift',None) is None:
-            # ivar = inverse variance of flux
-            self._redshift = self.data[2].data['Z']
-        return self._redshift
-
-    @property
-    def error_redshift(self):
-        if getattr(self,'_error_redshift',None) is None:
-            # ivar = inverse variance of flux
-            self._error_redshift = self.data[2].data['Z_ERR']
-        return self._error_redshift
 
 
     def plot(self, name_figure):
