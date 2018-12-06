@@ -9,5 +9,7 @@ parser.add_argument("-f", "--filepath", help="the data file to be read")
 
 args = parser.parse_args()
 
-figure = Spectrum(args.filepath)
-figure.plot("Name")
+s = Spectrum(args.filepath)
+s.plot("Name")
+
+print(s.color('g', 'r'))
