@@ -6,7 +6,7 @@ Created on Thu Dec  6 11:30:20 2018
 @author: BallBlueMeercat
 """
 
-from ..convolution import Convolution
+from spectrum import Convolution
 
 
 # test magnitude
