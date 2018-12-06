@@ -69,7 +69,7 @@ class Spectrum(object):
 
         # Plotting Spectrum
         plt.clf()
-        plt.plot(self.wavelength, self.flux, color='b', lw=2)
+        plt.plot(self.wavelength, self.flux, color = 'b', lw = 2)
         plt.xlabel(r'Wavelength $(\AA)$')
         plt.ylabel(r'Flux (Some units)')
         plt.xlim([min(self.wavelength) - 1, max(self.wavelength) + 1])
@@ -78,7 +78,6 @@ class Spectrum(object):
 
     def color(self, filter_name1, filter_name2):
         ### Compute color from the spectrum
-
         mag_object1 = Convolution(self.wavelength, self.flux, filter_name1)
         mag_object2 = Convolution(self.wavelength, self.flux, filter_name2)
 
