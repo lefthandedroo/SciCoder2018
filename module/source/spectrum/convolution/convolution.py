@@ -7,7 +7,7 @@ from   scipy.interpolate   import interp2d, interp1d
 
 class Convolution(object):
 
-    def __init__(wave, flux, filter_name):
+    def __init__(self, wave, flux, filter_name):
         self.wave = wave
         self.flux = flux
         self.filter_file = 'filters/' + self.filter_name + '_SDSS.res'

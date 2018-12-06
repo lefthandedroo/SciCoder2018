@@ -25,4 +25,11 @@ def test_dec():
     s = Spectrum(test_spectrum_data)
     np.testing.assert_approx_equal(s.dec, 1.4850507)
     
+def test_wavelength():
+    '''Test wavelength is nonzero'''
+    s = Spectrum(test_spectrum_data)
+    assert len(s.wavelength > 0), "Wavelength empty"
+    
+
+    
 
