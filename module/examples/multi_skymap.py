@@ -9,12 +9,19 @@ Created on Thu Dec  6 15:25:19 2018
 import matplotlib.pyplot as plt
 import astropy.units as u
 import astropy.coordinates as coord
-#import argparse
+import argparse
 import glob
 
 from spectrum import Spectrum
 
-filepath = '/Users/Shannon/Desktop/SciCoder/SciCoder-2018-Sydney/Data Files/spectra/'
+parser = argparse.ArgumentParser(description="Plot a skymap of given file",
+										usage="multi_skymap.py --filepath datafile.fits")
+
+parser.add_argument("-f", "--filepath", help="the data file to be read")
+
+args = parser.parse_args()
+
+# filepath = '/Users/Shannon/Desktop/SciCoder/SciCoder-2018-Sydney/Data Files/spectra/'
 
 files = glob.glob(filepath+'*.fits', recursive=True)
 
