@@ -15,6 +15,8 @@ args = parser.parse_args()
 s = Spectrum(args.filepath)
 s.plot("Name")
 
+print("File is: " + str(args.filepath))
+print('-'*len(args.filepath) + '-'*9)
 print("Colour is: " + str(s.color('g', 'r')))
 print("Declination is: " + str(s.dec))
 print("Right Ascension is: " + str(s.ra))
