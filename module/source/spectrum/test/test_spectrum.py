@@ -5,7 +5,7 @@ Created on Wed Dec  5 09:04:20 2018
 
 @author: mckemmishgroup
 """
-from ..spectrum import Spectrum
+from spectrum import Spectrum
 import numpy as np
 
 test_spectrum_data = 'spec-4055-55359-0001.fits'
