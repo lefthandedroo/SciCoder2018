@@ -4,15 +4,15 @@ import matplotlib.pyplot   as plt
 from   astropy.io          import fits
 from   astropy.io          import ascii
 from   scipy.interpolate   import interp2d, interp1d
-
+__file__
 
 class Convolution(object):
 
     def __init__(self, wave, flux, filter_name):
         self.wave = wave
         self.flux = flux
-        self.path = 'convolution/'
-        self.filter_file = self.path + 'filters/' + filter_name + '_SDSS.res'
+        self.path = os.path.dirname(os.path.realpath(__file__)).join('filters/')
+        self.filter_file = self.path + filter_name + '_SDSS.res'
 
     def read_filter(self, file):
         data     = ascii.read(file)
