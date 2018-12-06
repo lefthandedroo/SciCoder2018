@@ -12,4 +12,6 @@ args = parser.parse_args()
 s = Spectrum(args.filepath)
 s.plot("Name")
 
-print(s.color('g', 'r'))
+print(s.color('g', 'r'), s.dec, s.ra)
+print(len(s.wavelength))
+print(len(s.flux))
