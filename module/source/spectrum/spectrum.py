@@ -9,16 +9,41 @@ class Spectrum(object):
         if filepath is None:
             raise SDSSFileNotSpecifiedException("A spectrum file must "
                                                 "be specified to create a spectrum.")
-        self.filepath = filepath
-        self._ra = None
-        self._dec = None
-        self._flux = None
+        self.filepath    = filepath
+        self._ra         = None
+        self._dec        = None
+        self._flux       = None
         self._wavelength = None
-        self._error = None
+        self._error      = None
+        self._id         = None
+        self._objecttype = None
+
     @property
     def hdu_list(self):
         """ Returns the HDU list of this file. """
         return self.data
+
+    @property
+    def id(self):
+        if getattr(self,'_id',None) is None:
+            # ivar = inverse variance of flux
+            with fits.open(self.filepath) as hdu_list:
+                try:
+                    self._id = hdu_list[2].data['BOSS_SPECOBJ_ID']
+                except KeyError:
+                    print('You need to update the code to account for the modified keyword.')
+        return self._id
+
+    @property
+    def objecttype(self):
+        if getattr(self,'_objecttype',None) is None:
+            # ivar = inverse variance of flux
+            with fits.open(self.filepath) as hdu_list:
+                try:
+                    self._objecttype = hdu_list[2].data['OBJTYPE']
+                except KeyError:
+                    print('You need to update the code to account for the modified keyword.')
+        return self._objecttype
 
     @property
     def ra(self):
@@ -108,7 +133,7 @@ class Spectrum(object):
         plt.xlim([min(self.wavelength) - 1, max(self.wavelength) + 1])
         #plt.ylim([min(self.flux) - 0.1 * (min(self.flux)), max(self.flux) - 0.1 * (max(self.flux))])
         plt.savefig(name_figure + '.png', dpi=200)
-        
+
 
     def color(self, filter_name1, filter_name2):
         ### Compute color from the spectrum
@@ -116,3 +141,13 @@ class Spectrum(object):
         mag_object2 = Convolution(self.wavelength, self.flux, filter_name2)
 
         return mag_object1.magnitude - mag_object2.magnitude
+
+    def line_ew(self, name_line):
+        ##### Retrieve the equivalent width of a given line
+         
+        with fits.open(self.filepath) as hdu_list:
+             try:
+                 index = hdu_list[3].data['LINENAME'] == name_line
+                 line_value = hdu_list[3].data['LINEEW'][index]
+
+        return line_value
