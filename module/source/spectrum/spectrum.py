@@ -14,6 +14,11 @@ class Spectrum(object):
         self._dec = None
         self._flux = None
         self._wavelength = None
+        self._error = None
+    @property
+    def hdu_list(self):
+        """ Returns the HDU list of this file. """
+        return self.data
 
     @property
     def ra(self):
@@ -57,6 +62,13 @@ class Spectrum(object):
                 except KeyError:
                     print('You need to update the code to account for the modified keyword.')
         return self._flux
+    @property
+    def error(self):
+        if getattr(self,'_error',None) is None:
+            # ivar = inverse variance of flux
+            self._error = 1/self.data[1].data['ivar']
+        return self._error
+
 
     def plot(self, name_figure):
         """ Creates a plot of the spectrum """
@@ -85,11 +97,12 @@ class Spectrum(object):
 
         # Plotting Spectrum
         plt.clf()
-        plt.plot(self.wavelength, self.flux, color = 'b', lw = 2)
+        plt.plot(self.wavelength, self.flux, color = 'b', lw = 1.5)
+        plt.plot(self.wavelength, self.error, color = 'r', lw = 1)
         plt.xlabel(r'Wavelength $(\AA)$')
         plt.ylabel(r'Flux (Some units)')
         plt.xlim([min(self.wavelength) - 1, max(self.wavelength) + 1])
-        plt.ylim([min(self.flux) - 0.1 * (min(self.flux)), max(self.flux) - 0.1 * (max(self.flux))])
+        #plt.ylim([min(self.flux) - 0.1 * (min(self.flux)), max(self.flux) - 0.1 * (max(self.flux))])
         plt.savefig(name_figure + '.png', dpi=200)
 
     def color(self, filter_name1, filter_name2):
