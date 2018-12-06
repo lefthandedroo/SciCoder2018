@@ -46,7 +46,6 @@ class Convolution(object):
         wave_eff           = np.sqrt(np.trapz(fluxfilt, x = wavefilt)/np.trapz(fluxfilt/np.power(wavefilt, 2), x = wavefilt))
 
         # Finding the wavelength limits of the filters
-
         good = (wavefilt > 0.0)
         wlow = np.amin(wavefilt[good])
         whi  = np.amax(wavefilt[good])
@@ -56,10 +55,8 @@ class Convolution(object):
         tmp_wave = self.wavemod[w]
         tmp_flux = self.fluxmod[w]
         if np.amin(self.wavemod) > wlow or np.amax(self.wavemod) < whi:
-           continue
-
+            continue
         # Interpolate the filter response to data wavelength
-
         interp   = interp1d(wavefilt[good], fluxfilt[good])
         response = interp(tmp_wave)
 
