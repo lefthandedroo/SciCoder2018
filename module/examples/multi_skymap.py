@@ -15,7 +15,7 @@ import glob
 from spectrum import Spectrum
 
 parser = argparse.ArgumentParser(description="Plot a skymap of given file",
-										usage="multi_skymap.py --filepath datafile.fits")
+										usage="multi_skymap.py --file directory")
 
 parser.add_argument("-f", "--filepath", help="the data file to be read")
 
