@@ -9,8 +9,8 @@ __file__
 class Convolution(object):
 
     def __init__(self, wave, flux, filter_name):
-        self.wave = wave
-        self.flux = flux
+        self.wavemod = wave
+        self.fluxmod = flux
         self.path = os.path.dirname(os.path.realpath(__file__)) + '/filters/'
         self.filter_file = self.path + filter_name + '_SDSS.res'
 
