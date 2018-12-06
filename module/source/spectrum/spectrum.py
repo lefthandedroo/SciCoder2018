@@ -17,7 +17,7 @@ class Spectrum(object):
         self._wavelength = None
 
     @property
-    def ra(self):
+    def hdu_list(self):
         """ Returns the HDU list of this file. """
         if self._hdu_list is None:
             self._hdu_list = self.data
