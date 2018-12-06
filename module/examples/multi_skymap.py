@@ -14,6 +14,7 @@ import glob
 
 from spectrum import Spectrum
 
+
 ## CHANGE TO YOUR OWN FILEPATH
 #filepath = '/Users/mckemmishgroup/Anna/SciCoder/SciCoder-2018-Sydney/Data Files/spectra/'
 
