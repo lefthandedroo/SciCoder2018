@@ -30,7 +30,12 @@ def test_wavelength():
     s = Spectrum(test_spectrum_data)
     assert len(s.wavelength > 0), "Wavelength empty"
     
-def test_flux():
+def test_flux_presence():
     '''Test if flux has values'''
     s = Spectrum(test_spectrum_data)
     assert len(s.flux > 0), "No flux recorded"
+    
+def test_flux_sign():
+    ''' Checking for -ve flux'''
+    s = Spectrum(test_spectrum_data)
+    assert s.flux(all)
