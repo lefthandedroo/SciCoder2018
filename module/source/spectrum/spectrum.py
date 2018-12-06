@@ -2,6 +2,7 @@ from .errors import SDSSFileNotSpecifiedException
 from astropy.io import fits
 from .convolution.convolution import Convolution
 
+
 class Spectrum(object):
 
     def __init__(self, file):
@@ -72,13 +73,13 @@ class Spectrum(object):
         plt.xlabel(r'Wavelength $(\AA)$')
         plt.ylabel(r'Flux (Some units)')
         plt.xlim([min(self.wavelength) - 1, max(self.wavelength) + 1])
-        plt.ylim([min(self.flux) - 0.1 * (min(flux)), max(self.flux) - 0.1 * (max(flux))])
+        plt.ylim([min(self.flux) - 0.1 * (min(self.flux)), max(self.flux) - 0.1 * (max(self.flux))])
         plt.savefig(name_figure + '.png', dpi=200)
 
-      def color(self, filter_name1, filter_name2):
-          ### Compute color from the spectrum
+    def color(self, filter_name1, filter_name2):
+        ### Compute color from the spectrum
 
-          mag_object1 = Convolution(self.wavelength, self.flux, filter_name1)
-          mag_object2 = Convolution(self.wavelength, self.flux, filter_name2)
+        mag_object1 = Convolution(self.wavelength, self.flux, filter_name1)
+        mag_object2 = Convolution(self.wavelength, self.flux, filter_name2)
 
         return mag_object1.magnitude - mag_object2.magnitude
