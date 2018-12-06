@@ -66,7 +66,11 @@ class Spectrum(object):
     def error(self):
         if getattr(self,'_error',None) is None:
             # ivar = inverse variance of flux
-            self._error = 1/self.data[1].data['ivar']
+            with fits.open(self.filepath) as hdu_list:
+                try:
+                    self._error = 1./hdu_list[1].data['ivar']
+                except KeyError:
+                    print('You need to update the code to account for the modified keyword.')
         return self._error
 
 
