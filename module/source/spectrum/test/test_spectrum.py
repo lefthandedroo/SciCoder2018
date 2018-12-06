@@ -13,7 +13,7 @@ test_spectrum_data = 'spec-4055-55359-0001.fits'
 def test_data_size():
     '''Test that the size of the file is what we expect'''
     s = Spectrum(test_spectrum_data)
-    assert len(s.hud_list) == 4, "Wrong number of headers"
+    assert len(s.hdu_list) == 4, "Wrong number of headers"
     
 def test_ra():
     ''' Test that we can read the right ra'''
@@ -44,4 +44,5 @@ def test_flux_sign():
 def test_color():
     '''Check if color returns'''
     s = Spectrum(test_spectrum_data)
-    np.testing.assert_approx_equal(s.color, 0.4571685891215722) 
+    color = s.color('g', 'r')
+    np.testing.assert_approx_equal(color, 0.4571685891215722) 
