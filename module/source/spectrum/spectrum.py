@@ -24,10 +24,10 @@ class Spectrum(object):
 
     @property
     def dec(self):
-        """ Returns the RA of this spectrum in degrees. """
+        """ Returns the DEC of this spectrum in degrees. """
         if self._dec is None:
             self._dec = self.data[0].header["PLUG_DEC"]
-        return self._ra
+        return self._dec
 
     @property
     def wavelength(self):
