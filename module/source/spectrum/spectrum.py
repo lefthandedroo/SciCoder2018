@@ -106,6 +106,7 @@ class Spectrum(object):
         plt.xlim([min(self.wavelength) - 1, max(self.wavelength) + 1])
         #plt.ylim([min(self.flux) - 0.1 * (min(self.flux)), max(self.flux) - 0.1 * (max(self.flux))])
         plt.savefig(name_figure + '.png', dpi=200)
+        
 
     def color(self, filter_name1, filter_name2):
         ### Compute color from the spectrum
