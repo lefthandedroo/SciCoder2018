@@ -77,7 +77,7 @@ class Spectrum(object):
 
       def color(self, filter_name1, filter_name2):
           ### Compute color from the spectrum
-          
+
           mag_object1 = Convolution(self.wavelength, self.flux, filter_name1)
           mag_object2 = Convolution(self.wavelength, self.flux, filter_name2)
 
