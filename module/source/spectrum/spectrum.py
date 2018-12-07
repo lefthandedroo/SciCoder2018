@@ -22,8 +22,7 @@ class Spectrum(object):
     def hdu_list(self):
         """ Returns the HDU list of this file. """
         with fits.open(self.filepath) as hdu_list:
-             data = hdu_list
-        return data
+             return hdu_list
 
     @property
     def id(self):
