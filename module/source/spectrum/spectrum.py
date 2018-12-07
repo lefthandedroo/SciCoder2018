@@ -24,6 +24,7 @@ class Spectrum(object):
     def num_hdu(self):
         """ Returns the HDU list of this file. """
         with fits.open(self.filepath) as hdu_list:
+<<<<<<< HEAD
 
     @property
     def is_valid(self):
@@ -36,6 +37,12 @@ class Spectrum(object):
             {"".join(self.filepath.split("/")[:-1])}')
             self._is_valid = False
         self._is_valid = True
+=======
+             try:
+                 return hdu_list
+             except NameError:
+                 print("You need to give a correct name...")
+>>>>>>> d4da2a49296bb834a24a95661193ae3fc68a1747
 
     @property
     def id(self):
