@@ -7,16 +7,16 @@ Created on Wed Dec  5 09:04:20 2018
 """
 from spectrum import Spectrum
 import numpy as np
-import argparse
+#import argparse
 
-parser = argparse.ArgumentParser(description="Test a given .FITS file",
-										usage="test_spectrum.py --filepath datafile.fits")
-
-parser.add_argument("-f", "--filepath", help="the data file to be tested")
-
-args = parser.parse_args()
-
-test_spectrum_data = filepath
+#parser = argparse.ArgumentParser(description="Test a given .FITS file",
+#										usage="test_spectrum.py --filepath datafile.fits")
+#
+#parser.add_argument("-f", "--filepath", help="the data file to be tested")
+#
+#args = parser.parse_args()
+#
+#test_spectrum_data = filepath
 
 test_spectrum_data = 'spec-4055-55359-0001.fits'
 

@@ -51,7 +51,7 @@ class Spectrum(object):
         if self._ra is None:
             with fits.open(self.filepath) as hdu_list:
                 try:
-                    self._dec = hdu_list[0].header["PLUG_RA"]
+                    self._ra = hdu_list[0].header["PLUG_RA"]
                 except KeyError:
                     print('You need to update the code to account for the modified keyword.')
         return self._ra

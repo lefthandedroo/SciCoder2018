@@ -22,6 +22,7 @@ print("Declination is: " + str(s.dec))
 print("Right Ascension is: " + str(s.ra))
 print("Length (wavelength) is: " + str(len(s.wavelength)))
 print("Length (flux) is: " + str(len(s.flux)))
+print("ID of object is: " + str(s.id))
 
 skymap = plt.figure(figsize=(12,6))
 ax = skymap.add_subplot(111, projection="mollweide")
@@ -34,3 +35,5 @@ skymap.text(.49,.05,txt, fontsize=8, horizontalalignment='center')
 ax.grid(True)
 ax.set_axisbelow(True)
 skymap.savefig("skymap.pdf")
+
+
