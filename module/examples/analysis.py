@@ -39,6 +39,6 @@ txt = r'Caption'
 skymap.text(.49,.05,txt, fontsize=8, horizontalalignment='center')
 ax.grid(True)
 ax.set_axisbelow(True)
-skymap.savefig("skymap.pdf")''''
+skymap.savefig("skymap.pdf")'''
 
 
