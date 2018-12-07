@@ -29,7 +29,7 @@ class Spectrum(object):
             # ivar = inverse variance of flux
             with fits.open(self.filepath) as hdu_list:
                 try:
-                    self._id = hdu_list[2].data['BOSS_SPECOBJ_ID']
+                    self._id = str(hdu_list[2].data['BOSS_SPECOBJ_ID'][0])
                 except KeyError:
                     print('You need to update the code to account for the modified keyword.')
         return self._id
@@ -144,7 +144,7 @@ class Spectrum(object):
 
     def line_ew(self, name_line):
         ##### Retrieve the equivalent width of a given line
-         
+
         with fits.open(self.filepath) as hdu_list:
             try:
                 index = hdu_list[3].data['LINENAME'] == name_line
