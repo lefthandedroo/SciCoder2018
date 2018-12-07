@@ -23,7 +23,7 @@ test_spectrum_data = 'spec-4055-55359-0001.fits'
 def test_data_size():
     '''Test that the size of the file is what we expect'''
     s = Spectrum(test_spectrum_data)
-    assert len(s.num_hdu) == 4, "Wrong number of headers"
+    assert s.num_hdu == 4, "Wrong number of headers"
     
 def test_is_valid():
     '''fits file not empty'''
