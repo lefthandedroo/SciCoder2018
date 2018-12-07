@@ -24,7 +24,12 @@ print("Length (wavelength) is: " + str(len(s.wavelength)))
 print("Length (flux) is: " + str(len(s.flux)))
 print("ID of object is: " + str(s.id))
 
-skymap = plt.figure(figsize=(12,6))
+
+##############################
+# Skymap. Kind of useless in this file now that we've implemented it elsewhere.
+##############################
+
+'''skymap = plt.figure(figsize=(12,6))
 ax = skymap.add_subplot(111, projection="mollweide")
 sc = ax.scatter(coord.Angle(s.ra*u.degree).wrap_at(180*u.degree).radian, coord.Angle(s.dec*u.degree).radian, 
 				marker="*", s=200, c=s.color('g', 'r'), cmap=plt.get_cmap("rainbow"), vmin=0, vmax=1)
@@ -34,6 +39,6 @@ txt = r'Caption'
 skymap.text(.49,.05,txt, fontsize=8, horizontalalignment='center')
 ax.grid(True)
 ax.set_axisbelow(True)
-skymap.savefig("skymap.pdf")
+skymap.savefig("skymap.pdf")''''
 
 
