@@ -1,7 +1,7 @@
 from .errors import SDSSFileNotSpecifiedException
 from astropy.io import fits
 from .convolution.convolution import Convolution
-
+import numpy as np
 
 class Spectrum(object):
 
@@ -10,6 +10,8 @@ class Spectrum(object):
             raise SDSSFileNotSpecifiedException("A spectrum file must "
                                                 "be specified to create a spectrum.")
         self.filepath    = filepath
+        self._num_hdu    = None
+        self._is_valid   = None
         self._ra         = None
         self._dec        = None
         self._flux       = None
@@ -19,9 +21,23 @@ class Spectrum(object):
         self._objecttype = None
 
     @property
-    def hdu_list(self):
+    def num_hdu(self):
         """ Returns the HDU list of this file. """
-        return self.data
+        with fits.open(self.filepath) as hdu_list:
+            num_hdu = len(hdu_list)
+        return num_hdu
+
+    @property
+    def is_valid(self):
+        """ Returns the HDU list of this file. """
+        try:
+            with fits.open(self.filepath) as hdu_list:
+                pass
+        except FileNotFoundError:
+            print(f'File {self.filepath.split("/")[-1]} does not exist in directory \
+            {"".join(self.filepath.split("/")[:-1])}')
+            self._is_valid = False
+        self._is_valid = True
 
     @property
     def id(self):
@@ -93,7 +109,9 @@ class Spectrum(object):
             # ivar = inverse variance of flux
             with fits.open(self.filepath) as hdu_list:
                 try:
-                    self._error = 1./hdu_list[1].data['ivar']
+                    ivar = hdu_list[1].data['ivar']
+                    np.where(ivar)
+                    self._error = 1./ivar
                 except KeyError:
                     print('You need to update the code to account for the modified keyword.')
         return self._error
