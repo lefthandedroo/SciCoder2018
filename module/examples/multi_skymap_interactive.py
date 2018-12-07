@@ -42,7 +42,7 @@ def update_annot(ind):
 	annot.xy = pos
 	text = "{}".format("\n".join([file[n] for n in ind["ind"]]))
 	annot.set_text(text)
-	annot.get_bbox_patch().set_facecolor(cmap(norm(c[ind["ind"][0]])))
+	annot.get_bbox_patch().set_facecolor(cmap(c[ind["ind"][0]]))
 	annot.get_bbox_patch().set_alpha(1.0)
 
 def hover(event):
