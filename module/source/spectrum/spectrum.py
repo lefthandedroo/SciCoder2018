@@ -146,8 +146,10 @@ class Spectrum(object):
         ##### Retrieve the equivalent width of a given line
          
         with fits.open(self.filepath) as hdu_list:
-             try:
-                 index = hdu_list[3].data['LINENAME'] == name_line
-                 line_value = hdu_list[3].data['LINEEW'][index]
+            try:
+                index = hdu_list[3].data['LINENAME'] == name_line
+                line_value = hdu_list[3].data['LINEEW'][index]
+            except ValueError:
+                return "Value line wrong"
 
         return line_value
