@@ -21,7 +21,6 @@ c[NaNs] = 0
 file = data['file']
 
 cmap = plt.get_cmap("rainbow")
-norm=plt.Normalize(1,4)
 
 skymap = plt.figure(figsize=(12,6))
 ax = skymap.add_subplot(111, projection="mollweide")
