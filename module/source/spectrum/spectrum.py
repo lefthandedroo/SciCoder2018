@@ -25,7 +25,7 @@ class Spectrum(object):
         """ Returns the HDU list of this file. """
         with fits.open(self.filepath) as hdu_list:
             try:
-                return hdu_list
+                return len(hdu_list)
             except NameError:
                 print("You need to give a correct name...")
 
