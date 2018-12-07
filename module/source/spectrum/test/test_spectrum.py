@@ -28,7 +28,7 @@ def test_data_size():
 def test_is_valid():
     '''fits file not empty'''
     s = Spectrum(test_spectrum_data)
-    assert s.is_valid == True, ".fits file is not a valid file"
+    assert s.is_valid is True, ".fits file is not a valid file"
     
 def test_ra():
     ''' Test that we can read the right ra'''

@@ -40,6 +40,7 @@ class Spectrum(object):
             {"".join(self.filepath.split("/")[:-1])}')
             self._is_valid = False
         self._is_valid = True
+        return self._is_valid
 
 
 
