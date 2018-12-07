@@ -36,7 +36,6 @@ ax = skymap.add_subplot(111, projection="mollweide")
 for file in files: 
     
     s = Spectrum(file)
-    print(s.dec)
     sc = ax.scatter(coord.Angle(s.ra*u.degree).wrap_at(180*u.degree).radian, coord.Angle(s.dec*u.degree).radian, 
     				marker="*", s=200, c=s.color('g', 'r'), cmap=plt.get_cmap("rainbow"), vmin=0, vmax=1)
     
