@@ -21,7 +21,6 @@ c[NaNs] = 0
 file = data['file']
 
 cmap = plt.get_cmap("rainbow")
-norm=plt.Normalize(1,4)
 
 skymap = plt.figure(figsize=(12,6))
 ax = skymap.add_subplot(111, projection="mollweide")
@@ -42,7 +41,7 @@ def update_annot(ind):
 	annot.xy = pos
 	text = "{}".format("\n".join([file[n] for n in ind["ind"]]))
 	annot.set_text(text)
-	annot.get_bbox_patch().set_facecolor(cmap(norm(c[ind["ind"][0]])))
+	annot.get_bbox_patch().set_facecolor(cmap(c[ind["ind"][0]]))
 	annot.get_bbox_patch().set_alpha(1.0)
 
 def hover(event):
